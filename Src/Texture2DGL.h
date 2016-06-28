@@ -2,10 +2,11 @@
 #include <windows.h>
 #include <gl/GL.h>
 #include <map>
+#include "Object.h"
 
 namespace Kurumi
 {
-	class Texture2DGL 
+	class Texture2DGL :public Object
 	{
 	public:
 		int mWidth;

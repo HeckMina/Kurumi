@@ -2,12 +2,15 @@
 #include "Texture2DGL.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
+#include "ImageSprite.h"
 
 #pragma comment(lib,"opengl32.lib")
 #pragma comment(lib,"glu32.lib")
 namespace Platform
 {
 	static Kurumi::Texture2DGL*texture;
+	static Kurumi::ImageSprite*imageSprite;
+	static Kurumi::ImageSprite*imageSprite2;
 	void RenderWindow::Init()
 	{
 		NTWindow::Init();
@@ -39,26 +42,19 @@ namespace Platform
 		glColor3b(100, 100, 100);
 
 		texture = Kurumi::Texture2DGL::Load("test.bmp");
-		glEnable(GL_TEXTURE_2D);
-		glBindTexture(GL_TEXTURE_2D, texture->mTextureID);
+		imageSprite = new Kurumi::ImageSprite;
+		imageSprite->Init(100, 0, 100, 100);
+		imageSprite->mTexture = texture;
+		imageSprite2 = new Kurumi::ImageSprite;
+		imageSprite2->Init(-100, 0, 100, 100);
+		imageSprite2->mTexture = texture;
+		imageSprite->PushBack(imageSprite2);
 	}
 
 	void RenderWindow::RenderOnFrame()
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glBegin(GL_QUADS);
-		glTexCoord2f(0, 0);
-		glVertex3f(0, 0, -1.0f);
-
-		glTexCoord2f(1, 0);
-		glVertex3f(200, 0, -1.0f);
-
-		glTexCoord2f(1,1);
-		glVertex3f(200, 200, -1.0f);
-
-		glTexCoord2f(0, 1);
-		glVertex3f(0, 200, -1.0f);
-		glEnd();
+		imageSprite->Draw();
 		SwapBuffers(mDC);
 	}
 }

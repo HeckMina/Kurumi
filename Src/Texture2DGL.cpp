@@ -3,6 +3,7 @@
 
 namespace Kurumi
 {
+	std::map<std::string, Texture2DGL*> Texture2DGL::mCachedTextures;
 	Texture2DGL*Texture2DGL::Load(const char*path)
 	{
 		auto iter = mCachedTextures.find(path);
