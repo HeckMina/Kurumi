@@ -4,12 +4,20 @@
 #include <gl/GLU.h>
 #include "ImageSprite.h"
 #include "Button.h"
+#include "Camera.h"
 
 #pragma comment(lib,"opengl32.lib")
 #pragma comment(lib,"glu32.lib")
 namespace Platform
 {
 	static Kurumi::Button*button;
+
+	Kurumi::Camera gCamera;
+
+	RenderWindow::RenderWindow():mbMoveLeft(false),mbMoveRight(false),mbMoveBackward(false),mbMoveForward(false)
+	{
+
+	}
 	void RenderWindow::Init()
 	{
 		NTWindow::Init();
@@ -47,8 +55,65 @@ namespace Platform
 		button->Init(0, 0, 100, 100);
 	}
 
+	void RenderWindow::OnKeyDown(WPARAM wParam, LPARAM lParam)
+	{
+		if (wParam=='W')
+		{
+			mbMoveForward = true;
+		}
+		else if (wParam=='S')
+		{
+			mbMoveBackward = true;
+		}
+		else if (wParam=='A')
+		{
+			mbMoveLeft = true;
+		}
+		else if (wParam=='D')
+		{
+			mbMoveRight = true;
+		}
+	}
+
+	void RenderWindow::OnKeyUp(WPARAM wParam, LPARAM lParam)
+	{
+		if (wParam == 'W')
+		{
+			mbMoveForward = false;
+		}
+		else if (wParam == 'S')
+		{
+			mbMoveBackward = false;
+		}
+		else if (wParam == 'A')
+		{
+			mbMoveLeft = false;
+		}
+		else if (wParam == 'D')
+		{
+			mbMoveRight = false;
+		}
+	}
+
 	void RenderWindow::RenderOnFrame()
 	{
+		if (mbMoveLeft)
+		{
+			gCamera.MoveStrafe(-1.0f);
+		}
+		if (mbMoveRight)
+		{
+			gCamera.MoveStrafe(1.0f);
+		}
+		if (mbMoveForward)
+		{
+		}
+		if (mbMoveBackward)
+		{
+		}
+		glLoadIdentity();
+		gCamera.Update();
+
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		button->Draw();
 		SwapBuffers(mDC);

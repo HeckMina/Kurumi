@@ -36,6 +36,16 @@ namespace Platform
 
 	}
 
+	void NTWindow::OnKeyDown(WPARAM wParam, LPARAM lParam)
+	{
+
+	}
+
+	void NTWindow::OnKeyUp(WPARAM wParam, LPARAM lParam)
+	{
+
+	}
+
 	void NTWindow::Show(bool bShow)
 	{
 		mbVisiable = bShow;
@@ -97,6 +107,12 @@ namespace Platform
 			break;
 		case WM_RBUTTONUP:
 			self->OnRButtonUp(wParam, lParam);
+			break;
+		case WM_KEYDOWN:
+			self->OnKeyDown(wParam, lParam);
+			break;
+		case WM_KEYUP:
+			self->OnKeyUp(wParam, lParam);
 			break;
 		}
 		return DefWindowProc(hwnd, message, wParam, lParam);

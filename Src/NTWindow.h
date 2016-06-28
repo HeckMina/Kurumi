@@ -17,6 +17,8 @@ namespace Platform
 		virtual void OnLButtonUp(WPARAM wParam, LPARAM lParam);
 		virtual void OnRButtonDown(WPARAM wParam, LPARAM lParam);
 		virtual void OnRButtonUp(WPARAM wParam, LPARAM lParam);
+		virtual void OnKeyDown(WPARAM wParam, LPARAM lParam);
+		virtual void OnKeyUp(WPARAM wParam, LPARAM lParam);
 	public:
 		NTWindow();
 		virtual void Init();
