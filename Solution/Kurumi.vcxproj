@@ -41,6 +41,7 @@
     <ClInclude Include="..\Src\RenderContext.h" />
     <ClInclude Include="..\Src\RenderWindow.h" />
     <ClInclude Include="..\Src\SmartPtr.h" />
+    <ClInclude Include="..\Src\SOIL.h" />
     <ClInclude Include="..\Src\Texture2DGL.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

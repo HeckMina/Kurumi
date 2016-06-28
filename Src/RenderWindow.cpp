@@ -37,7 +37,7 @@ namespace Platform
 		HGLRC rc = wglCreateContext(mDC);
 		wglMakeCurrent(mDC, rc);
 
-		glClearColor(0, 0, 0, 1.0f);
+		glClearColor(41.0f / 255.0f, 71.0f / 255.0f, 121.0f / 255.0f, 1.0f);
 
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
@@ -46,12 +46,12 @@ namespace Platform
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
 
-		glColor3b(100, 100, 100);
+		glColor4ub(255, 255, 255, 255);
 
-		Kurumi::Texture2DGL::Load("test.bmp");
+		Kurumi::Texture2DGL::Load("150001.png");
 		button = new Kurumi::Button;
 		button->mImageSprite=new Kurumi::ImageSprite;
-		button->mImageSprite->mTexture= Kurumi::Texture2DGL::Load("test.bmp");
+		button->mImageSprite->mTexture= Kurumi::Texture2DGL::Load("150001.png");
 		button->Init(0, 0, 100, 100);
 	}
 

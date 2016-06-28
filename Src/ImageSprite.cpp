@@ -33,6 +33,8 @@ namespace Kurumi
 		glDisable(GL_LIGHTING);
 
 		glEnable(GL_TEXTURE_2D);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glBindTexture(GL_TEXTURE_2D,mTexture->mTextureID);
 		glBegin(GL_QUADS);
 		glTexCoord2f(0, 0);
