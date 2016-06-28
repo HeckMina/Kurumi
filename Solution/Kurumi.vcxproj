@@ -19,15 +19,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Src\FileSystem.cpp" />
     <ClCompile Include="..\Src\NTWindow.cpp" />
     <ClCompile Include="..\Src\RenderContext.cpp" />
     <ClCompile Include="..\Src\RenderWindow.cpp" />
+    <ClCompile Include="..\Src\Texture2DGL.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Src\FileSystem.h" />
     <ClInclude Include="..\Src\NTWindow.h" />
     <ClInclude Include="..\Src\RenderContext.h" />
     <ClInclude Include="..\Src\RenderWindow.h" />
+    <ClInclude Include="..\Src\Texture2DGL.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{DD186BCB-F517-4B21-B15C-06B1056A2F79}</ProjectGuid>

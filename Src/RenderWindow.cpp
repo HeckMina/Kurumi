@@ -1,4 +1,5 @@
 #include "RenderWindow.h"
+#include "Texture2DGL.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
 
@@ -6,6 +7,7 @@
 #pragma comment(lib,"glu32.lib")
 namespace Platform
 {
+	static Kurumi::Texture2DGL*texture;
 	void RenderWindow::Init()
 	{
 		NTWindow::Init();
@@ -35,15 +37,27 @@ namespace Platform
 		glLoadIdentity();
 
 		glColor3b(100, 100, 100);
+
+		texture = Kurumi::Texture2DGL::Load("test.bmp");
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, texture->mTextureID);
 	}
 
 	void RenderWindow::RenderOnFrame()
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glBegin(GL_TRIANGLES);
+		glBegin(GL_QUADS);
+		glTexCoord2f(0, 0);
 		glVertex3f(0, 0, -1.0f);
-		glVertex3f(100, 0, -1.0f);
-		glVertex3f(0, 100, -1.0f);
+
+		glTexCoord2f(1, 0);
+		glVertex3f(200, 0, -1.0f);
+
+		glTexCoord2f(1,1);
+		glVertex3f(200, 200, -1.0f);
+
+		glTexCoord2f(0, 1);
+		glVertex3f(0, 200, -1.0f);
 		glEnd();
 		SwapBuffers(mDC);
 	}
