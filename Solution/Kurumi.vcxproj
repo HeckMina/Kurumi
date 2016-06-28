@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Src\Button.cpp" />
+    <ClCompile Include="..\Src\Camera.cpp" />
     <ClCompile Include="..\Src\FileSystem.cpp" />
     <ClCompile Include="..\Src\ImageSprite.cpp" />
     <ClCompile Include="..\Src\NTWindow.cpp" />
@@ -31,6 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Src\Button.h" />
+    <ClInclude Include="..\Src\Camera.h" />
     <ClInclude Include="..\Src\FileSystem.h" />
     <ClInclude Include="..\Src\ImageSprite.h" />
     <ClInclude Include="..\Src\LinkList.h" />
