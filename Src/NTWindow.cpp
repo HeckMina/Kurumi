@@ -46,6 +46,10 @@ namespace Platform
 	void NTWindow::Init()
 	{
 		mDC = GetDC(mHwnd);
+		RECT rect;
+		GetClientRect(mHwnd, &rect);
+		mWidth = rect.right - rect.left;
+		mHeight = rect.bottom - rect.top;
 	}
 
 	ATOM NTWindow::RegisterWindow(LPCTSTR className,DWORD style)

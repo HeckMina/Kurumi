@@ -19,18 +19,26 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Src\Button.cpp" />
     <ClCompile Include="..\Src\FileSystem.cpp" />
+    <ClCompile Include="..\Src\ImageSprite.cpp" />
     <ClCompile Include="..\Src\NTWindow.cpp" />
+    <ClCompile Include="..\Src\Object.cpp" />
     <ClCompile Include="..\Src\RenderContext.cpp" />
     <ClCompile Include="..\Src\RenderWindow.cpp" />
     <ClCompile Include="..\Src\Texture2DGL.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Src\Button.h" />
     <ClInclude Include="..\Src\FileSystem.h" />
+    <ClInclude Include="..\Src\ImageSprite.h" />
+    <ClInclude Include="..\Src\LinkList.h" />
     <ClInclude Include="..\Src\NTWindow.h" />
+    <ClInclude Include="..\Src\Object.h" />
     <ClInclude Include="..\Src\RenderContext.h" />
     <ClInclude Include="..\Src\RenderWindow.h" />
+    <ClInclude Include="..\Src\SmartPtr.h" />
     <ClInclude Include="..\Src\Texture2DGL.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

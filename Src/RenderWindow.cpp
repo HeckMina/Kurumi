@@ -3,14 +3,13 @@
 #include <gl/GL.h>
 #include <gl/GLU.h>
 #include "ImageSprite.h"
+#include "Button.h"
 
 #pragma comment(lib,"opengl32.lib")
 #pragma comment(lib,"glu32.lib")
 namespace Platform
 {
-	static Kurumi::Texture2DGL*texture;
-	static Kurumi::ImageSprite*imageSprite;
-	static Kurumi::ImageSprite*imageSprite2;
+	static Kurumi::Button*button;
 	void RenderWindow::Init()
 	{
 		NTWindow::Init();
@@ -41,20 +40,32 @@ namespace Platform
 
 		glColor3b(100, 100, 100);
 
-		texture = Kurumi::Texture2DGL::Load("test.bmp");
-		imageSprite = new Kurumi::ImageSprite;
-		imageSprite->Init(100, 0, 100, 100);
-		imageSprite->mTexture = texture;
-		imageSprite2 = new Kurumi::ImageSprite;
-		imageSprite2->Init(-100, 0, 100, 100);
-		imageSprite2->mTexture = texture;
-		imageSprite->PushBack(imageSprite2);
+		Kurumi::Texture2DGL::Load("test.bmp");
+		button = new Kurumi::Button;
+		button->mImageSprite=new Kurumi::ImageSprite;
+		button->mImageSprite->mTexture= Kurumi::Texture2DGL::Load("test.bmp");
+		button->Init(0, 0, 100, 100);
 	}
 
 	void RenderWindow::RenderOnFrame()
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		imageSprite->Draw();
+		button->Draw();
 		SwapBuffers(mDC);
+	}
+
+	void RenderWindow::OnLButtonDown(WPARAM wParam, LPARAM lParam)
+	{
+		int x=LOWORD(lParam) - mWidth / 2;
+		int y = mHeight / 2 - HIWORD(lParam);
+		if (button->HitTest(x,y))
+		{
+			button->mbPressed = true;
+		}
+	}
+
+	void RenderWindow::OnLButtonUp(WPARAM wParam, LPARAM lParam)
+	{
+		button->mbPressed = false;
 	}
 }

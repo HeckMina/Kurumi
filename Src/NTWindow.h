@@ -9,6 +9,8 @@ namespace Platform
 		HWND mHwnd;
 		HDC mDC;
 		bool mbVisiable;
+		int mWidth;
+		int mHeight;
 	protected:
 		virtual void OnClose(WPARAM wParam, LPARAM lParam);
 		virtual void OnLButtonDown(WPARAM wParam, LPARAM lParam);
