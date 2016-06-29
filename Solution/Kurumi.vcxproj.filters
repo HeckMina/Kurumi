@@ -35,6 +35,9 @@
     <ClCompile Include="..\Src\Camera.cpp">
       <Filter>Src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Src\Ground.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Src\NTWindow.h">
@@ -71,6 +74,9 @@
       <Filter>Src</Filter>
     </ClInclude>
     <ClInclude Include="..\Src\SOIL.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Src\Ground.h">
       <Filter>Src</Filter>
     </ClInclude>
   </ItemGroup>

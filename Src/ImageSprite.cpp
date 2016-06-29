@@ -2,7 +2,7 @@
 
 namespace Kurumi
 {
-	ImageSprite::ImageSprite():mTexture(nullptr)
+	ImageSprite::ImageSprite() :mTexture(nullptr), mAlpha(1.0f),mbPlayFadeInAnimation(false)
 	{
 	}
 
@@ -30,13 +30,17 @@ namespace Kurumi
 
 	void ImageSprite::Draw()
 	{
+		if (mbPlayFadeInAnimation)
+		{
+			FadingIn();
+		}
 		glDisable(GL_LIGHTING);
 		glEnable(GL_TEXTURE_2D);
 		glEnable(GL_BLEND);
 		glDisable(GL_DEPTH_TEST);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glBindTexture(GL_TEXTURE_2D,mTexture->mTextureID);
-		glColor4ub(255, 255, 255, 255);
+		glColor4f(1.0f, 1.0f, 1.0f, mAlpha);
 		glBegin(GL_QUADS);
 		glTexCoord2f(0, 0);
 		glVertex3fv(mVertex);
@@ -53,6 +57,23 @@ namespace Kurumi
 		if (mNext!=nullptr)
 		{
 			Next<ImageSprite>()->Draw();
+		}
+	}
+
+	void ImageSprite::FadeIn(float duration)
+	{
+		mbPlayFadeInAnimation = true;
+		mFadeInDuration = duration;
+		mAlpha = 1.0f;
+	}
+
+	void ImageSprite::FadingIn()
+	{
+		mAlpha -= 0.02f;
+		if (mAlpha<0.0f)
+		{
+			mbPlayFadeInAnimation = false;
+			mAlpha = 1.0f;
 		}
 	}
 }

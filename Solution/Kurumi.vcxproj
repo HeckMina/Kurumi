@@ -22,6 +22,7 @@
     <ClCompile Include="..\Src\Button.cpp" />
     <ClCompile Include="..\Src\Camera.cpp" />
     <ClCompile Include="..\Src\FileSystem.cpp" />
+    <ClCompile Include="..\Src\Ground.cpp" />
     <ClCompile Include="..\Src\ImageSprite.cpp" />
     <ClCompile Include="..\Src\NTWindow.cpp" />
     <ClCompile Include="..\Src\Object.cpp" />
@@ -34,6 +35,7 @@
     <ClInclude Include="..\Src\Button.h" />
     <ClInclude Include="..\Src\Camera.h" />
     <ClInclude Include="..\Src\FileSystem.h" />
+    <ClInclude Include="..\Src\Ground.h" />
     <ClInclude Include="..\Src\ImageSprite.h" />
     <ClInclude Include="..\Src\LinkList.h" />
     <ClInclude Include="..\Src\NTWindow.h" />

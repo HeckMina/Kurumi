@@ -24,6 +24,7 @@ namespace Kurumi
 			if (y>mY-mHeight/2.0f&&
 				y<mY+mHeight/2.0f)
 			{
+				mImageSprite->FadeIn(0.5f);
 				return true;
 			}
 		}
