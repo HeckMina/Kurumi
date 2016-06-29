@@ -5,6 +5,7 @@
 #include "ImageSprite.h"
 #include "Button.h"
 #include "Camera.h"
+#include "Ground.h"
 
 #pragma comment(lib,"opengl32.lib")
 #pragma comment(lib,"glu32.lib")
@@ -52,7 +53,8 @@ namespace Platform
 		button = new Kurumi::Button;
 		button->mImageSprite=new Kurumi::ImageSprite;
 		button->mImageSprite->mTexture= Kurumi::Texture2DGL::Load("150001.png");
-		button->Init(0, 0, 100, 100);
+		button->Init(-320, 220, 100, 100);
+		Kurumi::Ground::Init();
 	}
 
 	void RenderWindow::OnKeyDown(WPARAM wParam, LPARAM lParam)
@@ -97,6 +99,15 @@ namespace Platform
 
 	void RenderWindow::RenderOnFrame()
 	{
+
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		gluPerspective(45.0f, (float)mWidth / (float)mHeight, 0.1f, 1000.0f);
+
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
+
 		if (mbMoveLeft)
 		{
 			gCamera.MoveStrafe(-1.0f);
@@ -107,14 +118,22 @@ namespace Platform
 		}
 		if (mbMoveForward)
 		{
+			gCamera.MoveForward(1.0f);
 		}
 		if (mbMoveBackward)
 		{
+			gCamera.MoveBackward(1.0f);
 		}
-		glLoadIdentity();
 		gCamera.Update();
+		Kurumi::Ground::Draw();
 
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		gluOrtho2D(-mWidth/2, mWidth/2, -mHeight/2, mHeight/2);
+
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
+
 		button->Draw();
 		SwapBuffers(mDC);
 	}

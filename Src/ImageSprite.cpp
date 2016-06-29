@@ -31,11 +31,12 @@ namespace Kurumi
 	void ImageSprite::Draw()
 	{
 		glDisable(GL_LIGHTING);
-
 		glEnable(GL_TEXTURE_2D);
 		glEnable(GL_BLEND);
+		glDisable(GL_DEPTH_TEST);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glBindTexture(GL_TEXTURE_2D,mTexture->mTextureID);
+		glColor4ub(255, 255, 255, 255);
 		glBegin(GL_QUADS);
 		glTexCoord2f(0, 0);
 		glVertex3fv(mVertex);

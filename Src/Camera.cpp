@@ -24,6 +24,18 @@ namespace Kurumi
 		mViewPoint.x += delta;
 	}
 
+	void Camera::MoveForward(float delta)
+	{
+		mPos.z -= delta;
+		mViewPoint.z -= delta;
+	}
+
+	void Camera::MoveBackward(float delta)
+	{
+		mPos.z += delta;
+		mViewPoint.z += delta;
+	}
+
 	void Camera::Update()
 	{
 		gluLookAt(mPos.x, mPos.y, mPos.z,

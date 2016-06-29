@@ -13,6 +13,8 @@ namespace Kurumi
 		glm::vec3 mViewPoint;
 
 		void MoveStrafe(float delta);
+		void MoveForward(float delta);
+		void MoveBackward(float delta);
 		void Update();
 	};
 }
