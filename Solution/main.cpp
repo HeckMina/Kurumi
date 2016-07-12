@@ -1,6 +1,7 @@
 #include <windows.h>
 #include "Src/NTWindow.h"
 #include "Src/RenderWindow.h"
+#include "Src/FBXImporter.h"
 
 static Platform::RenderWindow*sRenderWindow = nullptr;
 
@@ -34,6 +35,7 @@ INT WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	sRenderWindow = Platform::NTWindow::Create<Platform::RenderWindow>(L"NTWindow",WS_OVERLAPPEDWINDOW);
 	sRenderWindow->Init();
 	sRenderWindow->Show(true);
+	Kurumi::FBXImporter::Test();
 	MainLoop();
 	return 0;
 }
