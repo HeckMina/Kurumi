@@ -21,10 +21,49 @@ namespace Kurumi
 					FbxMesh*mesh = node->GetMesh();
 					int nVertexCount = mesh->GetControlPointsCount();
 					printf("vertex count is : %d",nVertexCount);
-					int nPolygonCount = mesh->GetPolygonCount();
-					for (int nIndex=0;nIndex<nPolygonCount;++nIndex)
+					int nTriangleCount = mesh->GetPolygonCount();
+					for (int nIndex=0;nIndex<nTriangleCount;++nIndex)
 					{
-						printf("polygon %d : index count %d\n", nIndex, mesh->GetPolygonSize(nIndex));
+						printf("triangle %d : index count %d\n", nIndex, mesh->GetPolygonSize(nIndex));
+					}
+					int nLayerCount = mesh->GetLayerCount();
+					for (int nLayerIndex=0;nLayerIndex<nLayerCount;++nLayerIndex)
+					{
+						//normal,uv,texture,tangent
+						FbxLayer*layer = mesh->GetLayer(nLayerIndex);
+						if (layer)
+						{
+							//FbxLayerElementNormal*normalLayer = (FbxLayerElementNormal*)layer->GetLayerElementOfType(FbxLayerElement::eNormal);//
+							FbxLayerElementNormal*normalLayer = layer->GetNormals();
+							if (normalLayer)
+							{
+								switch (normalLayer->GetReferenceMode())
+								{
+								case FbxLayerElement::EReferenceMode::eDirect:
+								{
+									auto&directArray = normalLayer->GetDirectArray();
+									float x=directArray.GetAt(0).mData[0];
+									float y = directArray.GetAt(0).mData[1];
+									float z = directArray.GetAt(0).mData[2];
+									printf("eDirect ,array count %d\n",directArray.GetCount());
+								}
+									break;
+								case FbxLayerElement::EReferenceMode::eIndexToDirect:
+								{
+									auto&directArray = normalLayer->GetDirectArray();
+									auto&indexArray = normalLayer->GetIndexArray();
+									int nRealIndex = indexArray.GetAt(0);
+									float x = directArray.GetAt(nRealIndex).mData[0];
+									float y = directArray.GetAt(nRealIndex).mData[1];
+									float z = directArray.GetAt(nRealIndex).mData[2];
+									printf("eIndexToDirect ,array count %d\n", indexArray.GetCount());
+								}
+									break;
+								case FbxLayerElement::EReferenceMode::eIndex:
+									break;
+								}
+							}
+						}
 					}
 				}
 			}
