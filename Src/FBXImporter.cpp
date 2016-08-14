@@ -67,6 +67,35 @@ namespace Kurumi
 					}
 				}
 			}
+			int materialCount = node->GetMaterialCount();
+			printf("material count : %d\n",materialCount);
+			for (int j=0;j<materialCount;++j)
+			{
+				FbxSurfaceMaterial*mat = node->GetMaterial(j);
+				//material:lambert¡¢phong¡¢cg
+				if (mat->GetClassId()==FbxSurfaceLambert::ClassId)
+				{
+					printf("lambert material\n");
+				}
+				else if (mat->GetClassId()==FbxSurfacePhong::ClassId)
+				{
+					FbxProperty prop = mat->FindProperty(FbxSurfaceMaterial::sDiffuse);
+					printf("%d phong material %s\n", j,mat->GetName());
+					if (prop.IsValid())
+					{
+						int textureCount = prop.GetSrcObjectCount(FbxTexture::ClassId);
+						FbxTexture*texture = prop.GetSrcObject<FbxTexture>();
+						if (texture)
+						{
+							printf("material diffuse texture name %s texture count %d\n", texture->GetName(), textureCount);
+						}
+					}
+				}
+				else
+				{
+					//cg ...
+				}
+			}
 		}
 		int nChildCount = node->GetChildCount();
 		for (int i=0;i<nChildCount;i++)
@@ -83,7 +112,7 @@ namespace Kurumi
 
 		fbxManager->SetIOSettings(fbxIOSetting);
 
-		fbxImporter->Initialize("media/model/cube.fbx", -1, fbxManager->GetIOSettings());
+		fbxImporter->Initialize("media/model/tauren.fbx", -1, fbxManager->GetIOSettings());
 
 		FbxScene*scene = FbxScene::Create(fbxManager, "CubeScene");
 		fbxImporter->Import(scene);
